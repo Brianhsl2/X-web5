@@ -1,0 +1,175 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>XEnablers.ai — Services</title>
+  <meta name="description"
+    content="Use-case prioritization, responsible AI governance, and adoption playbooks—delivered as packaged engagements." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <!-- (copy the header block from above) -->
+  <header class="site-header">
+    <div class="container nav">
+      <div class="logo"><span class="logo-wrap"><img alt="XEnablers.ai" class="logo-img" src="logo.jpeg" /></span></div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="outcomes.html">Outcomes</a>
+        <a href="approach.html">Approach</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="btn btn-outline">Contact</a>
+        <button id="themeToggle" class="btn btn-outline"
+          aria-pressed="false"
+          aria-label="Toggle dark mode">🌙 Dark</button>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>Services that move you from pilots to <span class="nowrap">controlled outcomes</span>.</h1>
+      <p class="sub">
+        Each engagement is designed to produce measurable results while building the governance and operational control needed to scale AI safely.
+      </p>
+      <div class="cta-group">
+        <a href="contact.html" class="btn btn-primary">Book a 20‑min consult</a>
+        <a href="outcomes.html" class="btn btn-link">See outcomes →</a>
+      </div>
+    </div>
+  </section>
+<section class="section">
+    <div class="container">
+     <div class="card card-horizontal">
+       <div class="card-main">
+         <h3>Not sure where to start?</h3>
+            <p class="muted-tight">
+         <strong>XenScore™</strong> is a fast, executive-ready assessment that
+            identifies your highest-value AI opportunities, governance gaps,
+            and shortest path to controlled production value.
+         </p>
+        </div>
+
+       <div class="card-actions">
+        <a href="xenscore.html" class="btn btn-link">
+          How XenScore™ works →
+        </a>
+  
+    </div>
+	</div>
+</div>
+
+</section>
+  <section class="section">
+  <div class="container">
+    <h2>Services packaged as a 3‑phase agentic AI lifecycle</h2>
+    <p class="muted" style="max-width:880px">
+      XEnablers combines strategy, pilot hardening, and production optimization into one connected lifecycle—designed
+      for resilience, explainability, and measurable value creation.
+    </p>
+
+    <div class="cards">
+      <div class="card">
+        <h3>Phase 1 — Concept</h3>
+        <p><strong>Deliverable:</strong> Dynamic Strategic Roadmap</p>
+        <ul>
+          <li>Market viability & strategy alignment</li>
+          <li>Data readiness & policy design</li>
+          <li>Simulation-led feasibility</li>
+        </ul>
+      </div>
+
+      <div class="card">
+        <h3>Phase 2 — Pilot</h3>
+        <p><strong>Deliverable:</strong> Audit‑Ready Pilot Verdict</p>
+        <ul>
+          <li>Adversarial testing & synthetic data</li>
+          <li>Security hardening & policy validation</li>
+          <li>Scale/stop decision with reasoning traceability</li>
+        </ul>
+      </div>
+
+
+      <div class="card">
+        <h3>Phase 3 — Production</h3>
+        <p><strong>Deliverable:</strong> Living Value Report</p>
+        <ul>
+          <li>Continuous optimization & drift control</li>
+          <li>Self-healing security and adoption support</li>
+          <li>Intent-based infrastructure & governed operations</li>
+        </ul>
+      </div>
+    </div>
+
+    <div class="cta-group" style="margin-top:18px">
+      <a class="btn btn-primary" href="contact.html">Book a XenScore™ Workshop</a>
+      <a href="sample-assessment.html" class="btn btn-link">See sample deliverable →</a>
+    </div>
+  </div>
+</section>
+
+  <section class="section alt">
+    <div class="container">
+      <h2>Common building blocks (included)</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Responsible AI governance</h3>
+          <p>Controls, policies, traceability, and audit-ready transparency that accelerate adoption instead of slowing it.</p>
+        </div>
+        <div class="card">
+          <h3>Observability + drift monitoring</h3>
+          <p>Continuous measurement, early detection, and automated correction to keep systems safe and effective.</p>
+        </div>
+        <div class="card">
+          <h3>Adoption playbooks</h3>
+          <p>Training, operational workflows, and enablement so teams trust and use AI in day-to-day execution.</p>
+        </div>
+      </div>
+
+      <div class="cta-group" style="margin-top: 18px;">
+        <a href="contact.html" class="btn btn-primary">Talk through the right starting point</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <small>© 2026 XEnablers.ai · Privacy · Terms</small>
+      <small>Carson City, NV · contact@xenablers.ai</small>
+    </div>
+  </footer>
+
+  <!-- Theme‑toggle script (same on every page) -->
+  <script>
+    (function () {
+      const key = "xenablers-theme";
+      const stored = localStorage.getItem(key);
+      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const initial = stored ||
+        (prefersDark ? "dark" : "light");
+      document.documentElement.setAttribute('data-theme', initial);
+
+      const themeBtn = document.getElementById("themeToggle");
+      function setThemeLabel(mode){
+        themeBtn.textContent = mode === 'dark' ? '☀️ Light' : '🌙 Dark';
+        themeBtn.setAttribute('aria-pressed', mode === 'dark');
+      }
+      setThemeLabel(initial);
+
+      themeBtn.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme') ||
+          'light';
+        const nxt = cur === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', nxt);
+        localStorage.setItem(key, nxt);
+        setThemeLabel(nxt);
+      });
+    })();
+  </script>
+
+</body>
+</html>

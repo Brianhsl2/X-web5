@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>XEnablers.ai — Operations Playbook</title>
+  <meta name="description"
+    content="Move from reactive operations to self-correcting performance with early detection, triggered action, and sustained improvement." />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- Header -->
+  <!-- (copy the header block from above) -->
+  <header class="site-header">
+    <div class="container nav">
+      <div class="logo"><span class="logo-wrap"><img alt="XEnablers.ai" class="logo-img" src="logo.jpeg" /></span></div>
+      <nav>
+        <a href="index.html">Home</a>
+        <a href="services.html">Services</a>
+        <a href="outcomes.html">Outcomes</a>
+        <a href="approach.html">Approach</a>
+        <a href="about.html">About</a>
+        <a href="contact.html" class="btn btn-outline">Contact</a>
+        <button id="themeToggle" class="btn btn-outline"
+          aria-pressed="false"
+          aria-label="Toggle dark mode">🌙 Dark</button>
+      </nav>
+    </div>
+  </header>
+
+  <section class="hero">
+    <div class="container hero-inner">
+      <h1>Move from reactive operations to <span class="nowrap">self‑correcting performance</span>.</h1>
+      <p class="sub">
+        Operations teams are under pressure to deliver more with less—while systems become more complex.
+        XEnablers helps you identify issues early, trigger action immediately, and sustain improvements across teams and systems.
+      </p>
+      <div class="cta-group">
+        <a href="contact.html" class="btn btn-primary">Book a 20‑min consult</a>
+        <a href="approach.html" class="btn btn-link">See how it works →</a>
+      </div>
+      <ul class="value-bullets">
+        <li><strong>Faster response</strong><br><span class="muted">Detect issues before they escalate.</span></li>
+        <li><strong>Reduced manual workload</strong><br><span class="muted">Fewer escalations and handoff friction.</span></li>
+        <li><strong>Consistent decisions</strong><br><span class="muted">Shared context across processes and teams.</span></li>
+      </ul>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container">
+      <h2>What’s slowing performance today</h2>
+      <div class="cards">
+        <div class="card">
+          <h3>Reactive instead of proactive</h3>
+          <p>Teams respond after issues occur—when cost and disruption are already high.</p>
+        </div>
+        <div class="card">
+          <h3>Manual intervention everywhere</h3>
+          <p>Time is lost reconciling data, coordinating handoffs, and chasing root causes across disconnected systems.</p>
+        </div>
+        <div class="card">
+          <h3>Inconsistent execution</h3>
+          <p>Different teams make different calls with different inputs—creating variability, rework, and delays.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section alt">
+    <div class="container">
+      <h2>How self-correcting operations work</h2>
+      <div class="metrics">
+        <div class="metric">
+          <div class="num">Sense</div>
+          <div class="label">Identify issues early</div>
+        </div>
+        <div class="metric">
+          <div class="num">Trigger</div>
+          <div class="label">Immediate actions & runbooks</div>
+        </div>
+        <div class="metric">
+          <div class="num">Improve</div>
+          <div class="label">Measure and sustain gains</div>
+        </div>
+      </div>
+
+      <div class="cards" style="margin-top: 16px;">
+        <div class="card">
+          <h3>Early signals</h3>
+          <p>Leading indicators that expose problems before they become incidents.</p>
+        </div>
+        <div class="card">
+          <h3>Action automation</h3>
+          <p>Triggers and workflows that reduce handoffs, delays, and repeated escalations.</p>
+        </div>
+        <div class="card">
+          <h3>Closed-loop learning</h3>
+          <p>Continuous improvement that sticks because outcomes are measured and governed.</p>
+        </div>
+      </div>
+
+      <div class="cta-group" style="margin-top: 18px;">
+        <a href="services.html" class="btn btn-primary">See ops-focused services</a>
+        <a href="contact.html" class="btn btn-link">Map your first workflow →</a>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="site-footer">
+    <div class="container footer-inner">
+      <small>© 2026 XEnablers.ai · Privacy · Terms</small>
+      <small>Carson City, NV · contact@xenablers.ai</small>
+    </div>
+  </footer>
+
+  <!-- Theme‑toggle script (same on every page) -->
+  <script>
+    (function () {
+      const key = "xenablers-theme";
+      const stored = localStorage.getItem(key);
+      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const initial = stored ||
+        (prefersDark ? "dark" : "light");
+      document.documentElement.setAttribute('data-theme', initial);
+
+      const themeBtn = document.getElementById("themeToggle");
+      function setThemeLabel(mode){
+        themeBtn.textContent = mode === 'dark' ? '☀️ Light' : '🌙 Dark';
+        themeBtn.setAttribute('aria-pressed', mode === 'dark');
+      }
+      setThemeLabel(initial);
+
+      themeBtn.addEventListener('click', () => {
+        const cur = document.documentElement.getAttribute('data-theme') ||
+          'light';
+        const nxt = cur === 'dark' ? 'light' : 'dark';
+        document.documentElement.setAttribute('data-theme', nxt);
+        localStorage.setItem(key, nxt);
+        setThemeLabel(nxt);
+      });
+    })();
+  </script>
+
+</body>
+</html>

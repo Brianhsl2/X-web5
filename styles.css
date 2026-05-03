@@ -1,0 +1,282 @@
+/* ============================================================
+   XEnablers.ai — styles.css
+   Shared stylesheet for all pages including approach.html
+
+   TOKEN RULE:
+     --indigo  = TEXT / LINK colour only.
+                 Light mode: dark navy #173B6D
+                 Dark  mode: light blue #93C5FD  (readable on dark backgrounds)
+                 NEVER use as a background colour.
+
+     --panel-navy = always-dark navy, safe as a background in both themes.
+   ============================================================ */
+
+/* ── Light mode (default) ── */
+:root {
+  --bg:              #ffffff;
+  --text:            #111111;
+  --muted:           #6B7280;
+  --surface:         #F5F7FA;
+  --border:          #E8EAEF;
+  --indigo:          #173B6D;
+  --saffron:         #FF8A3D;
+  --card-bg:         var(--surface);
+  --card-border:     var(--border);
+  --hero-grad-start: #ffffff;
+  --hero-grad-end:   #fafcff;
+  --focus:           #2563EB;
+
+  /* Approach page tokens */
+  --panel-navy:      #173B6D;
+  --panel-navy-sub:  #1A3F60;
+  --zone-stripe:     rgba(0,0,0,0.04);
+  --zone-hover:      rgba(23,59,109,0.06);
+}
+
+/* ── System dark (no manual override set yet) ── */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) {
+    --bg:              #0B1020;
+    --text:            #F3F4F6;
+    --muted:           #9CA3AF;
+    --surface:         #111827;
+    --border:          #2B3345;
+    --indigo:          #93C5FD;
+    --saffron:         #FDBA74;
+    --card-bg:         var(--surface);
+    --card-border:     var(--border);
+    --hero-grad-start: #0B1020;
+    --hero-grad-end:   #0E1528;
+    --focus:           #93C5FD;
+
+    --panel-navy:     #1E3A5F;
+    --panel-navy-sub: #1A3F60;
+    --zone-stripe:    rgba(255,255,255,0.04);
+    --zone-hover:     rgba(147,197,253,0.08);
+  }
+}
+
+/* ── Manual dark (button pressed) ── */
+[data-theme="dark"] {
+  --bg:              #0B1020;
+  --text:            #F3F4F6;
+  --muted:           #9CA3AF;
+  --surface:         #111827;
+  --border:          #2B3345;
+  --indigo:          #93C5FD;
+  --saffron:         #FDBA74;
+  --card-bg:         var(--surface);
+  --card-border:     var(--border);
+  --hero-grad-start: #0B1020;
+  --hero-grad-end:   #0E1528;
+  --focus:           #93C5FD;
+
+  --panel-navy:     #1E3A5F;
+  --panel-navy-sub: #1A3F60;
+  --zone-stripe:    rgba(255,255,255,0.04);
+  --zone-hover:     rgba(147,197,253,0.08);
+}
+
+/* ── Manual light (button pressed back) ── */
+[data-theme="light"] {
+  --bg:              #ffffff;
+  --text:            #111111;
+  --muted:           #6B7280;
+  --surface:         #F5F7FA;
+  --border:          #E8EAEF;
+  --indigo:          #173B6D;
+  --saffron:         #FF8A3D;
+  --card-bg:         var(--surface);
+  --card-border:     var(--border);
+  --hero-grad-start: #ffffff;
+  --hero-grad-end:   #fafcff;
+  --focus:           #2563EB;
+
+  --panel-navy:     #173B6D;
+  --panel-navy-sub: #1A3F60;
+  --zone-stripe:    rgba(0,0,0,0.04);
+  --zone-hover:     rgba(23,59,109,0.06);
+}
+
+/* ── Reset ── */
+* { box-sizing: border-box }
+html, body {
+  margin: 0; padding: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: Inter, Segoe UI, Arial, sans-serif;
+}
+a { color: var(--indigo) }
+a:focus, button:focus { outline: 3px solid var(--focus); outline-offset: 2px }
+.container { max-width: 1080px; margin: 0 auto; padding: 0 24px }
+.nowrap { white-space: nowrap }
+.muted  { color: var(--muted); font-weight: 500 }
+
+/* ── Header ── */
+.site-header {
+  position: sticky; top: 0;
+  background: var(--bg);
+  border-bottom: 1px solid var(--border);
+  z-index: 10;
+}
+.nav { display: flex; align-items: center; justify-content: space-between; height: 64px }
+.logo { display: flex; align-items: center }
+.logo-wrap {
+  display: inline-flex; align-items: center; justify-content: center;
+  padding: 4px 8px; border-radius: 10px;
+}
+:root:not([data-theme]) .logo-wrap { background: #0B1020 }
+[data-theme="light"]    .logo-wrap { background: #0B1020 }
+[data-theme="dark"]     .logo-wrap { background: transparent }
+.logo-img { height: 32px; width: auto; display: block }
+nav a { margin-left: 24px; text-decoration: none; font-weight: 600; color: var(--text); opacity: .9 }
+nav a:hover { color: var(--indigo) }
+.btn         { display: inline-block; padding: 12px 18px; border-radius: 10px; font-weight: 700; text-decoration: none; cursor: pointer }
+.btn-primary { background: var(--saffron); color: #111 }
+.btn-outline { border: 2px solid var(--border); color: var(--text); background: transparent }
+.btn-link    { color: var(--indigo); background: transparent; border: 0; padding: 0 }
+
+/* ── Hero ── */
+.hero { padding: 72px 0 24px; background: linear-gradient(180deg, var(--hero-grad-start) 0%, var(--hero-grad-end) 100%) }
+.hero h1    { font-size: 44px; line-height: 1.15; color: var(--indigo); margin: 0 0 12px }
+.hero .sub  { font-size: 18px; color: var(--muted); max-width: 720px }
+.cta-group  { margin: 18px 0 8px }
+.cta-group .btn { margin-right: 12px }
+.value-bullets {
+  display: grid; grid-template-columns: repeat(3,1fr);
+  gap: 16px; margin: 20px 0 0; padding: 0; list-style: none;
+}
+.value-bullets li { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 12px; padding: 12px 14px }
+
+/* ── Sections ── */
+.section     { padding: 56px 0 }
+.section.alt { background: color-mix(in oklab, var(--bg) 94%, var(--surface) 6%) }
+.section h2  { font-size: 28px; margin: 0 0 18px; color: var(--text) }
+
+/* ── Cards ── */
+.cards { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px }
+.card  { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 18px }
+.card h3 { margin: 0 0 8px; color: var(--text) }
+.card p  { margin: 0; color: var(--muted) }
+
+/* ── Outcomes ── */
+.metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px }
+.metric  { background: var(--bg); border: 1px dashed var(--card-border); border-radius: 14px; padding: 18px; text-align: center }
+.metric .num   { font-size: 34px; font-weight: 800; color: var(--indigo) }
+.metric .label { color: var(--muted); margin-top: 4px }
+
+/* ── Approach diagram wrapper (original page) ── */
+.diagram { border: 1px solid var(--card-border); border-radius: 14px; background: var(--bg); max-width: 460px; margin: 0 auto; padding: 0 12px }
+
+/* ── Contact ── */
+.contact-form { display: grid; grid-template-columns: 1fr 1fr; gap: 16px }
+.contact-form label { display: flex; flex-direction: column; font-weight: 600; color: var(--text) }
+.contact-form input,
+.contact-form textarea { margin-top: 6px; padding: 10px; border-radius: 10px; border: 1px solid var(--card-border); font: inherit; background: var(--bg); color: var(--text) }
+.contact-form textarea { grid-column: 1 / span 2 }
+.fineprint { grid-column: 1 / span 2; color: var(--muted); margin-top: 8px }
+
+/* ── Footer ── */
+.site-footer  { border-top: 1px solid var(--border); background: var(--bg) }
+.footer-inner { display: flex; justify-content: space-between; padding: 18px 0; color: var(--muted) }
+
+/* ── Transitions ── */
+html, body,
+.site-header, .site-footer,
+.card, .metric, .diagram,
+.split-panel, .panel-title, .diagram-wrap,
+.zone-table td, .zone-tag,
+.ebitda-card, .footnote {
+  transition: background-color .25s ease, color .25s ease, border-color .25s ease;
+}
+
+/* ============================================================
+   APPROACH PAGE — split panel
+   ============================================================ */
+
+.approach-intro   { text-align: center; padding: 48px 0 40px }
+.approach-intro h2 { font-size: 30px; margin: 0 0 10px; color: var(--indigo) }
+.approach-intro p  { font-size: 16px; color: var(--muted); max-width: 640px; margin: 0 auto }
+
+.ebitda-badge {
+  display: inline-block;
+  background: var(--saffron); color: #111;
+  font-weight: 800; font-size: 11px;
+  letter-spacing: .08em; text-transform: uppercase;
+  padding: 4px 14px; border-radius: 20px; margin-bottom: 14px;
+}
+
+/* Two-column container */
+.split-panel {
+  display: grid; grid-template-columns: 1fr 1fr;
+  border: 1px solid var(--card-border);
+  border-radius: 20px; overflow: hidden;
+  background: var(--card-bg);
+}
+
+/* Shared panel header — uses --panel-navy so it NEVER flips light */
+.panel-title {
+  padding: 16px 20px 13px;
+  font-size: 12px; font-weight: 700;
+  text-transform: uppercase; letter-spacing: .07em;
+  color: #fff;
+  background: var(--panel-navy);
+}
+.panel-right .panel-title { background: var(--panel-navy-sub) }
+
+/* Left panel */
+.panel-left { border-right: 1px solid var(--card-border); display: flex; flex-direction: column }
+
+/* Zone table */
+.zone-table { width: 100%; border-collapse: collapse; font-size: .8rem; flex: 1 }
+.zone-table thead th {
+  background: color-mix(in oklab, var(--panel-navy) 80%, black 20%);
+  color: #fff; font-weight: 700; font-size: 10px;
+  letter-spacing: .06em; text-transform: uppercase;
+  padding: 9px 14px; text-align: left;
+}
+.zone-table tbody tr         { border-bottom: 1px solid var(--card-border); transition: background .15s }
+.zone-table tbody tr:last-child  { border-bottom: none }
+.zone-table tbody tr:nth-child(even) { background: var(--zone-stripe) }
+.zone-table tbody tr:hover   { background: var(--zone-hover) }
+.zone-table td { padding: 11px 14px; vertical-align: top }
+.zone-table td:first-child   { font-weight: 700; color: var(--text); width: 40%; border-right: 1px solid var(--card-border) }
+.zone-table td:last-child    { color: var(--muted); line-height: 1.5; font-size: .76rem }
+
+.zone-tag {
+  display: block; width: fit-content;
+  background: color-mix(in oklab, var(--saffron) 22%, transparent);
+  color: color-mix(in oklab, var(--saffron) 55%, black 45%);
+  font-size: 9px; font-weight: 800;
+  letter-spacing: .07em; text-transform: uppercase;
+  padding: 1px 7px; border-radius: 5px; margin-bottom: 4px;
+}
+[data-theme="dark"] .zone-tag {
+  color: var(--saffron);
+  background: color-mix(in oklab, var(--saffron) 15%, transparent);
+}
+.zone-name { font-size: .78rem; line-height: 1.35; display: block }
+
+/* Right panel */
+.panel-right  { display: flex; flex-direction: column; align-items: stretch }
+.diagram-wrap { flex: 1; display: flex; align-items: center; justify-content: center; padding: 16px 10px 20px; background: var(--card-bg) }
+.diagram-wrap svg { width: 100%; height: auto; max-width: 440px }
+
+/* EBITDA cards */
+.ebitda-strip { display: grid; grid-template-columns: repeat(3,1fr); gap: 14px; margin-top: 28px }
+.ebitda-card  { background: var(--card-bg); border: 1px solid var(--card-border); border-radius: 14px; padding: 18px 16px; border-top: 3px solid var(--saffron) }
+.ebitda-card .e-icon { font-size: 20px; margin-bottom: 7px }
+.ebitda-card h4 { margin: 0 0 5px; font-size: 13px; color: var(--text) }
+.ebitda-card p  { margin: 0; font-size: 12px; color: var(--muted); line-height: 1.55 }
+
+.footnote { text-align: center; font-size: 11px; color: var(--muted); margin-top: 28px; padding-top: 14px; border-top: 1px solid var(--card-border) }
+
+/* ── Responsive ── */
+@media (max-width: 860px) {
+  .cards, .metrics, .value-bullets { grid-template-columns: 1fr }
+  .contact-form  { grid-template-columns: 1fr }
+  .hero h1       { font-size: 36px }
+  .split-panel   { grid-template-columns: 1fr }
+  .panel-left    { border-right: none; border-bottom: 1px solid var(--card-border) }
+  .ebitda-strip  { grid-template-columns: 1fr }
+}
