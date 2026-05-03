@@ -7,28 +7,13 @@
   <meta name="description"
     content="Move from reactive operations to self-correcting performance with early detection, triggered action, and sustained improvement." />
   <link rel="stylesheet" href="styles.css" />
+  <script>!function(){var t=localStorage.getItem("xenablers-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}();</script>
 </head>
 <body>
 
   <!-- Header -->
   <!-- (copy the header block from above) -->
-  <header class="site-header">
-    <div class="container nav">
-      <div class="logo"><span class="logo-wrap"><img alt="XEnablers.ai" class="logo-img" src="logo.jpeg" /></span></div>
-      <nav>
-        <a href="contact.html" class="btn btn-primary btn-nav-cta">Book a 20&#8209;min consult</a>
-        <a href="index.html">Home</a>
-        <a href="services.html">Services</a>
-        <a href="outcomes.html">Outcomes</a>
-        <a href="approach.html">Approach</a>
-        <a href="about.html">About</a>
-        <a href="contact.html" class="btn btn-outline">Contact</a>
-        <button id="themeToggle" class="btn btn-outline"
-          aria-pressed="false"
-          aria-label="Toggle dark mode">🌙 Dark</button>
-      </nav>
-    </div>
-  </header>
+  <header class="site-header"></header>
 
   <section class="hero">
     <div class="container hero-inner">
@@ -110,40 +95,9 @@
   </section>
 
   <!-- Footer -->
-  <footer class="site-footer">
-    <div class="container footer-inner">
-      <small>© 2026 XEnablers.ai · Privacy · Terms</small>
-      <small>Carson City, NV · information@xenablers.com</small>
-    </div>
-  </footer>
+  <footer class="site-footer"></footer>
 
-  <!-- Theme‑toggle script (same on every page) -->
-  <script>
-    (function () {
-      const key = "xenablers-theme";
-      const stored = localStorage.getItem(key);
-      const prefersDark = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches;
-      const initial = stored ||
-        (prefersDark ? "dark" : "light");
-      document.documentElement.setAttribute('data-theme', initial);
-
-      const themeBtn = document.getElementById("themeToggle");
-      function setThemeLabel(mode){
-        themeBtn.textContent = mode === 'dark' ? '☀️ Light' : '🌙 Dark';
-        themeBtn.setAttribute('aria-pressed', mode === 'dark');
-      }
-      setThemeLabel(initial);
-
-      themeBtn.addEventListener('click', () => {
-        const cur = document.documentElement.getAttribute('data-theme') ||
-          'light';
-        const nxt = cur === 'dark' ? 'light' : 'dark';
-        document.documentElement.setAttribute('data-theme', nxt);
-        localStorage.setItem(key, nxt);
-        setThemeLabel(nxt);
-      });
-    })();
-  </script>
+  <script src="site-includes.js" defer></script>
 
 </body>
 </html>

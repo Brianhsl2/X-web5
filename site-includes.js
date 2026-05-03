@@ -48,7 +48,7 @@ function wireThemeToggle() {
   const btn = document.getElementById("themeToggle");
   if (!btn) return;
 
-  const saved = localStorage.getItem("theme");
+  const saved = localStorage.getItem("xenablers-theme");
   if (saved === "dark" || saved === "light") {
     document.documentElement.setAttribute("data-theme", saved);
   }
@@ -74,7 +74,7 @@ function wireThemeToggle() {
   btn.addEventListener("click", () => {
     const next = effectiveTheme() === "dark" ? "light" : "dark";
     document.documentElement.setAttribute("data-theme", next);
-    localStorage.setItem("theme", next);
+    localStorage.setItem("xenablers-theme", next);
     updateToggleUI();
   });
 
