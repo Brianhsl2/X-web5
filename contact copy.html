@@ -1,8 +1,4 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+<!DOCTYPE html>-width, initial-scale=1" />
   <title>XEnablers.ai — Contact</title>
   <meta name="description"
     content="Book a consult with XEnablers.ai to prioritize use cases, implement Responsible AI governance, and enable adoption in operations." />
@@ -54,7 +50,8 @@
       <div class="container">
         <h2 id="form">Send us a note</h2>
 
-        <form class="contact-form" id="contactForm" action="#" method="post">
+        <!-- NOTE: Wire this form to your preferred handler (Azure Function, Logic App, etc.). -->
+        <form class="contact-form" action="#" method="post">
           <label>
             Name
             <input type="text" name="name" autocomplete="name" required />
@@ -63,11 +60,6 @@
           <label>
             Work email
             <input type="email" name="email" autocomplete="email" required />
-          </label>
-
-          <label aria-hidden="true" style="position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden;">
-            Leave this field empty
-            <input type="text" name="website" tabindex="-1" autocomplete="off" />
           </label>
 
           <label>
@@ -126,7 +118,6 @@
           <div style="grid-column: 1 / span 2;">
             <button class="btn btn-primary" type="submit">Send</button>
             <a class="btn btn-outline" href="outcomes.html" style="margin-left: 10px;">See outcomes</a>
-            <p id="sendHint" class="muted" style="margin-top: 10px;">Send submits directly from the site. If delivery fails, your email app will open as fallback.</p>
           </div>
         </form>
       </div>
@@ -184,76 +175,12 @@
         localStorage.setItem(key, nxt);
         setThemeLabel(nxt);
       });
-
-      const form = document.getElementById('contactForm');
-      const sendHint = document.getElementById('sendHint');
-
-      function buildMailto(values) {
-        const subject = `Contact request from ${values.name}`;
-        const body = [
-          `Name: ${values.name}`,
-          `Work email: ${values.email}`,
-          `Company: ${values.company || 'N/A'}`,
-          `Role: ${values.role || 'N/A'}`,
-          `Area of focus: ${values.focus || 'N/A'}`,
-          `Timeline: ${values.timeline || 'N/A'}`,
-          '',
-          'Outcome / message:',
-          values.message || 'N/A'
-        ].join('\n');
-
-        return `mailto:information@xenablers.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      }
-
-      form.addEventListener('submit', async (event) => {
-        event.preventDefault();
-
-        const data = new FormData(form);
-        const values = {
-          name: (data.get('name') || '').toString().trim(),
-          email: (data.get('email') || '').toString().trim(),
-          website: (data.get('website') || '').toString().trim(),
-          company: (data.get('company') || '').toString().trim(),
-          role: (data.get('role') || '').toString().trim(),
-          focus: (data.get('focus') || '').toString().trim(),
-          timeline: (data.get('timeline') || '').toString().trim(),
-          message: (data.get('message') || '').toString().trim()
-        };
-
-        if (!values.name || !values.email) {
-          return;
-        }
-
-        const submitButton = form.querySelector('button[type="submit"]');
-        const previousButtonText = submitButton.textContent;
-        submitButton.disabled = true;
-        submitButton.textContent = 'Sending...';
-        sendHint.textContent = 'Sending your note...';
-
-        try {
-          const response = await fetch('/api/contact', {
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify(values)
-          });
-
-          if (!response.ok) {
-            throw new Error('Request failed');
-          }
-
-          form.reset();
-          sendHint.textContent = 'Thanks. Your message was sent.';
-        } catch (error) {
-          sendHint.textContent = 'Could not send from the site. Opening your email app now...';
-          window.location.href = buildMailto(values);
-        } finally {
-          submitButton.disabled = false;
-          submitButton.textContent = previousButtonText;
-        }
-      });
     })();
   </script>
 
 </body>
 </html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
 
