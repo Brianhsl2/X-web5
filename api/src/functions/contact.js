@@ -1,5 +1,4 @@
 const { app } = require('@azure/functions');
-const { ClientSecretCredential } = require('@azure/identity');
 
 const rateWindowMs = Number(process.env.CONTACT_RATE_WINDOW_MS || 10 * 60 * 1000);
 const rateMaxRequests = Number(process.env.CONTACT_RATE_MAX || 5);
@@ -35,20 +34,35 @@ function isValidEmail(value) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
 }
 
-async function sendViaGraph({ tenantId, clientId, clientSecret, sender, to, subject, text }) {
-  const credential = new ClientSecretCredential(tenantId, clientId, clientSecret);
-  const token = await credential.getToken('https://graph.microsoft.com/.default');
-
-  if (!token || !token.token) {
-    throw new Error('Failed to acquire Microsoft Graph token.');
+async function getGraphToken(tenantId, clientId, clientSecret) {
+  const params = new URLSearchParams({
+    grant_type: 'client_credentials',
+    client_id: clientId,
+    client_secret: clientSecret,
+    scope: 'https://graph.microsoft.com/.default'
+  });
+  const res = await fetch(
+    `https://login.microsoftonline.com/${tenantId}/oauth2/v2.0/token`,
+    { method: 'POST', headers: { 'Content-Type': 'application/x-www-form-urlencoded' }, body: params }
+  );
+  if (!res.ok) {
+    const detail = await res.text();
+    throw new Error(`Token request failed ${res.status}: ${detail}`);
   }
+  const data = await res.json();
+  if (!data.access_token) throw new Error('No access_token in token response.');
+  return data.access_token;
+}
+
+async function sendViaGraph({ tenantId, clientId, clientSecret, sender, to, subject, text }) {
+  const accessToken = await getGraphToken(tenantId, clientId, clientSecret);
 
   const response = await fetch(
     `https://graph.microsoft.com/v1.0/users/${encodeURIComponent(sender)}/sendMail`,
     {
       method: 'POST',
       headers: {
-        Authorization: `Bearer ${token.token}`,
+        Authorization: `Bearer ${accessToken}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({
