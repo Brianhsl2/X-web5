@@ -87,18 +87,39 @@ app.http('contact', {
       };
     }
 
+    const smtpHost = process.env.XENABLERS_SMTP_HOST || process.env.SMTP_HOST;
+    const smtpPort = Number(process.env.XENABLERS_SMTP_PORT || process.env.SMTP_PORT || 587);
+    const smtpSecure =
+      String(process.env.XENABLERS_SMTP_SECURE || process.env.SMTP_SECURE || 'false').toLowerCase() === 'true';
+    const smtpUser = process.env.XENABLERS_SMTP_USER || process.env.SMTP_USER;
+    const smtpPass = process.env.XENABLERS_SMTP_PASS || process.env.SMTP_PASS;
+
+    if (!smtpHost || !smtpUser || !smtpPass) {
+      context.error('Missing SMTP configuration for XEnablers mail server.');
+      return {
+        status: 500,
+        jsonBody: { ok: false, error: 'Unable to send email right now.' }
+      };
+    }
+
     const transporter = nodemailer.createTransport({
-      host: process.env.SMTP_HOST,
-      port: Number(process.env.SMTP_PORT || 587),
-      secure: String(process.env.SMTP_SECURE || 'false').toLowerCase() === 'true',
+      host: smtpHost,
+      port: smtpPort,
+      secure: smtpSecure,
       auth: {
-        user: process.env.SMTP_USER,
-        pass: process.env.SMTP_PASS
+        user: smtpUser,
+        pass: smtpPass
       }
     });
 
-    const to   = process.env.CONTACT_TO   || 'information@xenablers.com';
-    const from = process.env.CONTACT_FROM || process.env.SMTP_USER;
+    const to =
+      process.env.XENABLERS_CONTACT_TO ||
+      process.env.CONTACT_TO ||
+      'information@xenablers.com';
+    const from =
+      process.env.XENABLERS_CONTACT_FROM ||
+      process.env.CONTACT_FROM ||
+      'website@xenablers.ai';
 
     const text = [
       `Name: ${name}`,
