@@ -109,18 +109,39 @@ app.http('contact', {
       return { status: 400, jsonBody: { ok: false, error: 'Invalid request body.' } };
     }
 
-    const name     = normalizeField(body.name,     120);
-    const email    = normalizeField(body.email,    254);
-    const company  = normalizeField(body.company,  120);
-    const role     = normalizeField(body.role,     120);
-    const focus    = normalizeField(body.focus,    180);
-    const timeline = normalizeField(body.timeline,  60);
-    const message  = normalizeField(body.message, 4000);
-    const website  = normalizeField(body.website,  120);
+    const name           = normalizeField(body.name,          120);
+    const email          = normalizeField(body.email,         254);
+    const company        = normalizeField(body.company,       120);
+    const role           = normalizeField(body.role,          120);
+    const focus          = normalizeField(body.focus,         180);
+    const timeline       = normalizeField(body.timeline,       60);
+    const message        = normalizeField(body.message,      4000);
+    const website        = normalizeField(body.website,       120);
+    const recaptchaToken = normalizeField(body.recaptchaToken, 2048);
 
     // Honeypot — bots fill this field; silently accept and discard
     if (website) {
       return { status: 200, jsonBody: { ok: true } };
+    }
+
+    // reCAPTCHA v2 server-side verification
+    const recaptchaSecret = process.env.RECAPTCHA_SECRET;
+    if (!recaptchaSecret) {
+      context.error('Missing RECAPTCHA_SECRET configuration.');
+      return { status: 500, jsonBody: { ok: false, error: 'Unable to send email right now.' } };
+    }
+    if (!recaptchaToken) {
+      return { status: 400, jsonBody: { ok: false, error: 'reCAPTCHA verification required.' } };
+    }
+    const recaptchaRes = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+      body: new URLSearchParams({ secret: recaptchaSecret, response: recaptchaToken })
+    });
+    const recaptchaData = await recaptchaRes.json();
+    if (!recaptchaData.success) {
+      context.warn('reCAPTCHA failed:', recaptchaData['error-codes']);
+      return { status: 400, jsonBody: { ok: false, error: 'reCAPTCHA check failed. Please try again.' } };
     }
 
     if (!name || !email) {

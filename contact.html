@@ -7,6 +7,7 @@
   <meta name="description"
     content="Book a consult with XEnablers.ai to prioritize use cases, implement Responsible AI governance, and enable adoption in operations." />
   <link rel="stylesheet" href="styles.css" />
+  <script src="https://www.google.com/recaptcha/api.js" async defer></script>
   <script>!function(){var t=localStorage.getItem("xenablers-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}();</script>
 </head>
 <body>
@@ -110,9 +111,10 @@
           </div>
 
           <div style="grid-column: 1 / span 2;">
+            <div class="g-recaptcha" data-sitekey="6LesLsUsAAAAAP-LtBB_dGRc-R_xix80KmcbDUsQ" style="margin-bottom: 12px;"></div>
             <button class="btn btn-primary" type="submit">Send</button>
             <a class="btn btn-outline" href="outcomes.html" style="margin-left: 10px;">See outcomes</a>
-            <p id="sendHint" class="muted" style="margin-top: 10px;">Send submits directly from the site. If delivery fails, your email app will open as fallback.</p>
+            <p id="sendHint" class="muted" style="margin-top: 10px;">Your message is sent directly and securely from this site.</p>
           </div>
         </form>
       </div>
@@ -168,6 +170,13 @@
           return;
         }
 
+        const recaptchaToken = grecaptcha.getResponse();
+        if (!recaptchaToken) {
+          sendHint.textContent = 'Please complete the reCAPTCHA check.';
+          return;
+        }
+        values.recaptchaToken = recaptchaToken;
+
         const submitButton = form.querySelector('button[type="submit"]');
         const previousButtonText = submitButton.textContent;
         submitButton.disabled = true;
@@ -186,6 +195,7 @@
           }
 
           form.reset();
+          grecaptcha.reset();
           sendHint.textContent = 'Thanks. Your message was sent.';
         } catch (error) {
           sendHint.textContent = 'Unable to send your message right now. Please try again later or email information@xenablers.com directly.';
