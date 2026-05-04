@@ -1,5 +1,5 @@
 const { app } = require('@azure/functions');
-const nodemailer = require('nodemailer');
+const { ClientSecretCredential } = require('@azure/identity');
 
 const rateWindowMs = Number(process.env.CONTACT_RATE_WINDOW_MS || 10 * 60 * 1000);
 const rateMaxRequests = Number(process.env.CONTACT_RATE_MAX || 5);
@@ -33,6 +33,42 @@ function normalizeField(value, maxLen) {
 function isValidEmail(value) {
   if (!value || value.length > 254) return false;
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(value);
+}
+
+async function sendViaGraph({ tenantId, clientId, clientSecret, sender, to, subject, text }) {
+  const credential = new ClientSecretCredential(tenantId, clientId, clientSecret);
+  const token = await credential.getToken('https://graph.microsoft.com/.default');
+
+  if (!token || !token.token) {
+    throw new Error('Failed to acquire Microsoft Graph token.');
+  }
+
+  const response = await fetch(
+    `https://graph.microsoft.com/v1.0/users/${encodeURIComponent(sender)}/sendMail`,
+    {
+      method: 'POST',
+      headers: {
+        Authorization: `Bearer ${token.token}`,
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        message: {
+          subject,
+          body: {
+            contentType: 'Text',
+            content: text
+          },
+          toRecipients: [{ emailAddress: { address: to } }]
+        },
+        saveToSentItems: true
+      })
+    }
+  );
+
+  if (!response.ok) {
+    const details = await response.text();
+    throw new Error(`Graph send failed with ${response.status}: ${details}`);
+  }
 }
 
 app.http('contact', {
@@ -87,39 +123,23 @@ app.http('contact', {
       };
     }
 
-    const smtpHost = process.env.XENABLERS_SMTP_HOST || process.env.SMTP_HOST;
-    const smtpPort = Number(process.env.XENABLERS_SMTP_PORT || process.env.SMTP_PORT || 587);
-    const smtpSecure =
-      String(process.env.XENABLERS_SMTP_SECURE || process.env.SMTP_SECURE || 'false').toLowerCase() === 'true';
-    const smtpUser = process.env.XENABLERS_SMTP_USER || process.env.SMTP_USER;
-    const smtpPass = process.env.XENABLERS_SMTP_PASS || process.env.SMTP_PASS;
+    const tenantId = process.env.GRAPH_TENANT_ID;
+    const clientId = process.env.GRAPH_CLIENT_ID;
+    const clientSecret = process.env.GRAPH_CLIENT_SECRET;
 
-    if (!smtpHost || !smtpUser || !smtpPass) {
-      context.error('Missing SMTP configuration for XEnablers mail server.');
+    if (!tenantId || !clientId || !clientSecret) {
+      context.error('Missing Microsoft Graph app credentials.');
       return {
         status: 500,
         jsonBody: { ok: false, error: 'Unable to send email right now.' }
       };
     }
 
-    const transporter = nodemailer.createTransport({
-      host: smtpHost,
-      port: smtpPort,
-      secure: smtpSecure,
-      auth: {
-        user: smtpUser,
-        pass: smtpPass
-      }
-    });
-
     const to =
       process.env.XENABLERS_CONTACT_TO ||
       process.env.CONTACT_TO ||
       'information@xenablers.com';
-    const from =
-      process.env.XENABLERS_CONTACT_FROM ||
-      process.env.CONTACT_FROM ||
-      'information@xenablers.com';
+    const sender = process.env.GRAPH_SENDER || 'information@xenablers.com';
 
     const text = [
       `Name: ${name}`,
@@ -134,8 +154,11 @@ app.http('contact', {
     ].join('\n');
 
     try {
-      await transporter.sendMail({
-        from,
+      await sendViaGraph({
+        tenantId,
+        clientId,
+        clientSecret,
+        sender,
         to,
         subject: `Contact request from ${name}`,
         text
