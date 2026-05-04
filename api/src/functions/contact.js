@@ -119,7 +119,7 @@ app.http('contact', {
     const from =
       process.env.XENABLERS_CONTACT_FROM ||
       process.env.CONTACT_FROM ||
-      'website@xenablers.ai';
+      'information@xenablers.com';
 
     const text = [
       `Name: ${name}`,
@@ -137,7 +137,6 @@ app.http('contact', {
       await transporter.sendMail({
         from,
         to,
-        replyTo: email,
         subject: `Contact request from ${name}`,
         text
       });
