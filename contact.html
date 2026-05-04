@@ -149,23 +149,6 @@
       const form = document.getElementById('contactForm');
       const sendHint = document.getElementById('sendHint');
 
-      function buildMailto(values) {
-        const subject = `Contact request from ${values.name}`;
-        const body = [
-          `Name: ${values.name}`,
-          `Work email: ${values.email}`,
-          `Company: ${values.company || 'N/A'}`,
-          `Role: ${values.role || 'N/A'}`,
-          `Area of focus: ${values.focus || 'N/A'}`,
-          `Timeline: ${values.timeline || 'N/A'}`,
-          '',
-          'Outcome / message:',
-          values.message || 'N/A'
-        ].join('\n');
-
-        return `mailto:information@xenablers.com?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
-      }
-
       form.addEventListener('submit', async (event) => {
         event.preventDefault();
 
@@ -205,8 +188,7 @@
           form.reset();
           sendHint.textContent = 'Thanks. Your message was sent.';
         } catch (error) {
-          sendHint.textContent = 'Could not send from the site. Opening your email app now...';
-          window.location.href = buildMailto(values);
+          sendHint.textContent = 'Unable to send your message right now. Please try again later or email information@xenablers.com directly.';
         } finally {
           submitButton.disabled = false;
           submitButton.textContent = previousButtonText;
