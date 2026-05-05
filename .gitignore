@@ -1,2 +1,7 @@
 node_modules/
 .env
+
+# Sensitive local files — keys and setup notes
+Google reCAPTCHA keys.txt
+GoDaddy.txt
+RECAPTCHA_SETUP.md
