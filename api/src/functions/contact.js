@@ -140,8 +140,9 @@ app.http('contact', {
     });
     const recaptchaData = await recaptchaRes.json();
     if (!recaptchaData.success) {
-      context.warn('reCAPTCHA failed:', recaptchaData['error-codes']);
-      return { status: 400, jsonBody: { ok: false, error: 'reCAPTCHA check failed. Please try again.' } };
+      const codes = (recaptchaData['error-codes'] || []).join(',');
+      context.warn('reCAPTCHA failed:', codes);
+      return { status: 400, jsonBody: { ok: false, error: `reCAPTCHA check failed. Please try again. (${codes})` } };
     }
 
     if (!name || !email) {
