@@ -190,15 +190,19 @@
             body: JSON.stringify(values)
           });
 
+          const result = await response.json().catch(() => ({}));
+
           if (!response.ok) {
-            throw new Error('Request failed');
+            throw new Error(result.error || 'Request failed');
           }
 
           form.reset();
           if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
           sendHint.textContent = 'Thanks. Your message was sent.';
         } catch (error) {
-          sendHint.textContent = 'Unable to send your message right now. Please try again later or email information@xenablers.com directly.';
+          sendHint.textContent = error.message && error.message !== 'Request failed'
+            ? error.message
+            : 'Unable to send your message right now. Please try again later or email information@xenablers.com directly.';
         } finally {
           submitButton.disabled = false;
           submitButton.textContent = previousButtonText;
