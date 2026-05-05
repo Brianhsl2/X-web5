@@ -170,7 +170,7 @@
           return;
         }
 
-        const recaptchaToken = grecaptcha.getResponse();
+        const recaptchaToken = (typeof grecaptcha !== 'undefined') ? grecaptcha.getResponse() : '';
         if (!recaptchaToken) {
           sendHint.textContent = 'Please complete the reCAPTCHA check.';
           return;
@@ -195,7 +195,7 @@
           }
 
           form.reset();
-          grecaptcha.reset();
+          if (typeof grecaptcha !== 'undefined') grecaptcha.reset();
           sendHint.textContent = 'Thanks. Your message was sent.';
         } catch (error) {
           sendHint.textContent = 'Unable to send your message right now. Please try again later or email information@xenablers.com directly.';
