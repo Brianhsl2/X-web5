@@ -117,7 +117,7 @@ app.http('contact', {
     const timeline       = normalizeField(body.timeline,       60);
     const message        = normalizeField(body.message,      4000);
     const website        = normalizeField(body.website,       120);
-    const recaptchaToken = normalizeField(body.recaptchaToken, 2048);
+    const recaptchaToken = normalizeField(body.recaptchaToken, 8192);
 
     // Honeypot — bots fill this field; silently accept and discard
     if (website) {
