@@ -139,6 +139,7 @@ app.http('contact', {
       body: new URLSearchParams({ secret: recaptchaSecret, response: recaptchaToken })
     });
     const recaptchaData = await recaptchaRes.json();
+    context.log('reCAPTCHA token length:', recaptchaToken.length, 'result:', JSON.stringify(recaptchaData));
     if (!recaptchaData.success) {
       const codes = (recaptchaData['error-codes'] || []).join(',');
       context.warn('reCAPTCHA failed:', codes);
