@@ -5,7 +5,8 @@
   "description": "Azure Function endpoint for XEnablers contact form",
   "main": "src/functions/contact.js",
   "scripts": {
-    "start": "func start"
+    "start": "func start",
+    "test": "node -e \"console.log('No tests configured yet')\""
   },
   "dependencies": {
     "@azure/functions": "^4.7.0"

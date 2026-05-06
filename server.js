@@ -135,7 +135,15 @@ app.get('/health', (_req, res) => {
   res.json({ ok: true });
 });
 
-app.listen(port, () => {
-  console.log(`Contact backend running on http://localhost:${port}`);
-});
+function startServer() {
+  return app.listen(port, () => {
+    console.log(`Contact backend running on http://localhost:${port}`);
+  });
+}
+
+if (require.main === module) {
+  startServer();
+}
+
+module.exports = { app, startServer };
 
