@@ -65,8 +65,9 @@ function wireThemeToggle() {
   function updateToggleUI() {
     const isDark = effectiveTheme() === "dark";
     btn.setAttribute("aria-pressed", String(isDark));
-    btn.innerHTML = isDark ? "&#9728; Light" : "&#9790; Dark";
+    btn.textContent = isDark ? "Light" : "Dark";
     btn.setAttribute("aria-label", isDark ? "Toggle light mode" : "Toggle dark mode");
+    btn.classList.toggle("btn-dark-active", isDark);
   }
 
   updateToggleUI();

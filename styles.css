@@ -118,9 +118,11 @@ a:focus, button:focus { outline: 3px solid var(--focus); outline-offset: 2px }
   background: var(--bg);
   border-bottom: 1px solid var(--border);
   z-index: 10;
+  overflow: visible;
 }
-.nav { display: flex; align-items: center; justify-content: space-between; height: 64px }
-.logo { display: flex; align-items: center }
+.site-header .container { max-width: 1280px; padding: 0 20px }
+.nav { display: flex; align-items: center; justify-content: space-between; height: 56px; flex-wrap: nowrap; gap: 6px; min-width: 0 }
+.logo { display: flex; align-items: center; flex-shrink: 0 }
 .logo-wrap {
   display: inline-flex; align-items: center; justify-content: center;
   padding: 4px 8px; border-radius: 10px;
@@ -128,13 +130,17 @@ a:focus, button:focus { outline: 3px solid var(--focus); outline-offset: 2px }
 :root:not([data-theme]) .logo-wrap { background: #0B1020 }
 [data-theme="light"]    .logo-wrap { background: #0B1020 }
 [data-theme="dark"]     .logo-wrap { background: transparent }
-.logo-img { height: 32px; width: auto; display: block }
-nav a { margin-left: 24px; text-decoration: none; font-weight: 600; color: var(--text); opacity: .9 }
+.logo-img { height: 28px; width: auto; display: block }
+nav { display: flex; align-items: center; flex-wrap: nowrap; gap: 0; flex-shrink: 0 }
+nav a { margin-left: 12px; text-decoration: none; font-weight: 600; font-size: 13px; color: var(--text); opacity: .9; white-space: nowrap }
 nav a:hover { color: var(--indigo) }
-.btn         { display: inline-block; padding: 12px 18px; border-radius: 10px; font-weight: 700; text-decoration: none; cursor: pointer }
+nav button { margin-left: 10px; flex-shrink: 0 }
+.btn         { display: inline-flex; align-items: center; gap: 4px; padding: 6px 11px; border-radius: 8px; font-weight: 700; font-size: 12px; text-decoration: none; cursor: pointer; white-space: nowrap; line-height: 1.2; font-family: inherit }
 .btn-primary { background: var(--saffron); color: #111 }
 .btn-outline { border: 2px solid var(--border); color: var(--text); background: transparent }
+.btn-dark-active { border-color: var(--indigo); color: var(--indigo) }
 .btn-link    { color: var(--indigo); background: transparent; border: 0; padding: 0 }
+.btn-nav-cta { margin-left: 12px }
 
 /* ── Hero ── */
 .hero { padding: 72px 0 24px; background: linear-gradient(180deg, var(--hero-grad-start) 0%, var(--hero-grad-end) 100%) }
