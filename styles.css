@@ -223,7 +223,7 @@ html, body,
 /* Shared panel header — uses --panel-navy so it NEVER flips light */
 .panel-title {
   padding: 16px 20px 13px;
-  font-size: 12px; font-weight: 700;
+  font-size: 15px; font-weight: 700;
   text-transform: uppercase; letter-spacing: .07em;
   color: #fff;
   background: var(--panel-navy);
