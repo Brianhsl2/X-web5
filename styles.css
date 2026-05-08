@@ -166,7 +166,7 @@ nav button { margin-left: 10px; flex-shrink: 0 }
 .card p  { margin: 0; color: var(--muted) }
 
 /* ── Outcomes ── */
-.metrics { display: grid; grid-template-columns: repeat(3,1fr); gap: 16px }
+.metrics { display: grid; grid-template-columns: repeat(4,1fr); gap: 16px }
 .metric  { background: var(--bg); border: 1px dashed var(--card-border); border-radius: 14px; padding: 18px; text-align: center }
 .metric .num   { font-size: 34px; font-weight: 800; color: var(--indigo) }
 .metric .label { color: var(--muted); margin-top: 4px }
