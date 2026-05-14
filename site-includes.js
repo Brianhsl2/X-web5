@@ -3,45 +3,45 @@
  * Injects shared header/footer partials and wires global UI behaviors.
  */
 
+function scriptBaseUrl() {
+  // Resolve relative includes based on where this JS file is loaded from.
+  const src = document.currentScript && document.currentScript.src;
+  const base = src ? new URL('.', src) : new URL('.', location.href);
+  return base;
+}
+
 async function loadPartial(file) {
-  const response = await fetch(file, { cache: "no-store" });
-  if (!response.ok) {
-    throw new Error(file + " HTTP " + response.status);
-  }
+  const url = new URL(file, scriptBaseUrl());
+  const response = await fetch(url.toString(), { cache: "no-store" });
+  if (!response.ok) throw new Error(url.pathname + " HTTP " + response.status);
   return response.text();
 }
 
 function parseFirstElement(html) {
   const template = document.createElement("template");
-  template.innerHTML = html.trim();
+  template.innerHTML = (html || "").trim();
   return template.content.firstElementChild;
 }
 
-function replaceOrInject(selector, targetId, html) {
-  const target = document.getElementById(targetId);
-  const replacement = parseFirstElement(html);
-  if (!replacement) return;
-
-  if (target) {
-    target.innerHTML = "";
-    target.appendChild(replacement);
-    return;
-  }
-
+function replaceOrInject(selector, html) {
   const existing = document.querySelector(selector);
-  if (existing) {
+  if (!existing) return;
+
+  const replacement = parseFirstElement(html);
+  if (replacement) {
     existing.replaceWith(replacement);
+  } else {
+    existing.innerHTML = html;
   }
 }
 
 function markActiveNav() {
-  const currentPath = location.pathname.split("/").pop() || "index.html";
-  const navLink = document.querySelector(
-    'header.site-header nav a[href="' + currentPath + '"]'
-  );
-  if (navLink) {
-    navLink.setAttribute("aria-current", "page");
-  }
+  const currentPath = (location.pathname.split("/").pop() || "index.html").toLowerCase();
+  const links = document.querySelectorAll('header.site-header nav a[href]');
+  links.forEach(a => {
+    const href = (a.getAttribute('href') || '').toLowerCase();
+    if (href === currentPath) a.setAttribute('aria-current', 'page');
+  });
 }
 
 function wireThemeToggle() {
@@ -56,10 +56,7 @@ function wireThemeToggle() {
   function effectiveTheme() {
     const explicit = document.documentElement.getAttribute("data-theme");
     if (explicit === "dark" || explicit === "light") return explicit;
-
-    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches
-      ? "dark"
-      : "light";
+    return window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)").matches ? "dark" : "light";
   }
 
   function updateToggleUI() {
@@ -81,10 +78,25 @@ function wireThemeToggle() {
 
   if (!document.documentElement.getAttribute("data-theme")) {
     const mq = window.matchMedia && window.matchMedia("(prefers-color-scheme: dark)");
-    if (mq && mq.addEventListener) {
-      mq.addEventListener("change", updateToggleUI);
-    }
+    if (mq && mq.addEventListener) mq.addEventListener("change", updateToggleUI);
   }
+}
+
+function ensureIndustryServicesButton() {
+  const nav = document.querySelector('header.site-header nav');
+  if (!nav) return;
+
+  const existing = nav.querySelector('a[href="industry-services.html"]');
+  if (existing) return;
+
+  const a = document.createElement('a');
+  a.href = 'industry-services.html';
+  a.className = 'btn btn-outline btn-nav-cta';
+  a.textContent = 'Industry Services';
+
+  const primaryCta = nav.querySelector('a.btn.btn-primary.btn-nav-cta');
+  if (primaryCta) nav.insertBefore(a, primaryCta);
+  else nav.appendChild(a);
 }
 
 async function injectIncludes() {
@@ -94,11 +106,12 @@ async function injectIncludes() {
       loadPartial("footer.html"),
     ]);
 
-    replaceOrInject("header.site-header", "siteHeader", headerHtml);
-    replaceOrInject("footer.site-footer", "siteFooter", footerHtml);
+    replaceOrInject('header.site-header', headerHtml);
+    replaceOrInject('footer.site-footer', footerHtml);
 
-    markActiveNav();
+    ensureIndustryServicesButton();
     wireThemeToggle();
+    markActiveNav();
   } catch (error) {
     console.error("site-includes injection failed:", error);
   }

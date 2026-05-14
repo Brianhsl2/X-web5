@@ -286,3 +286,22 @@ html, body,
   .panel-left    { border-right: none; border-bottom: 1px solid var(--card-border) }
   .ebitda-strip  { grid-template-columns: 1fr }
 }
+
+/* ============================================================
+   XEnQuad — force the quadrant cards into a true 2×2 grid
+   Apply by adding class='quad-grid' to the quadrant .cards container
+   ============================================================ */
+.cards.quad-grid {
+  /* overrides default .cards (3-up) */
+  grid-template-columns: repeat(2, 1fr);
+}
+
+
+/* ============================================================
+   TTAA (Time-to-Autonomous-Action) metric cards
+   Responsive auto-fit grid that adapts to device width
+   Usage: <div class="metrics ttaa-grid"> ...
+   ============================================================ */
+.metrics.ttaa-grid {
+  grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+}
