@@ -37,9 +37,50 @@
  <!-- XEnQuad Section (replaces the first XEnScore section; includes Start Where You Are cards) -->
 <section class="section">
   <div class="container">
-    <h2>XEnQuad™: Where are you in these AI solution quadrants?</h2>
+    <h2>XEnQuad™: turn diagnosis into capital allocation</h2>
 
-<h3 style="margin-top: 26px">The four strategic states</h3>
+    <p class="muted" style="max-width: 860px">
+      XEnQuad overlays <strong>XEnScore™</strong> (business risk status) with <strong>MML View</strong> (agent technical maturity)
+      to place your organization into one of four strategic states—so leaders can decide what to stabilize now, what to automate next,
+      and where to realign investment for the fastest risk reduction and ROI.
+    </p>
+
+    <p class="muted" style="max-width: 860px; margin-top: 10px">
+      <strong>Crucial definition:</strong>
+      <strong>High XEnScore™</strong> = <strong>low / managed risk</strong> (a “good” score).&nbsp;&nbsp;
+      <strong>Low XEnScore™</strong> = <strong>high / unmanaged risk</strong> (a “bad” score).
+    </p>
+
+    <div class="cards" style="margin-top: 16px">
+      <div class="card">
+        <h3>Board-level requirement</h3>
+        <p>
+          “AI as a dashboard” is a liability. The question is whether your AI can protect EBITDA and reputation
+          in real time—across the risk zones that drive enterprise loss.
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Dual‑lens model (risk ↔ maturity)</h3>
+        <p>
+          <strong>XEnScore™</strong> quantifies industry‑weighted exposure across five zones; <strong>MML View</strong>
+          measures agent maturity within those same zones (from manual to self‑evolving autonomy).
+        </p>
+        <p class="muted" style="margin-top: 10px">
+          Cyber Defense • Operational Continuity • Knowledge/Decision Workflows • Constitutional Governance • Process Optimization
+        </p>
+      </div>
+
+      <div class="card">
+        <h3>Executive KPI: time‑to‑autonomous‑action</h3>
+        <p>
+          Track progress with one KPI: moving from days/weeks (manual) to seconds/milliseconds (fully autonomous),
+          with humans shifting to exception handling as controls mature.
+        </p>
+      </div>
+    </div>
+
+    <h3 style="margin-top: 26px">The four strategic states</h3>
     <p class="muted" style="max-width: 860px; margin-top: 10px">
       XEnQuad translates your posture into the next move: <strong>Emergency Stabilization</strong>, <strong>Strategic Realignment</strong>,
       <strong>Automation & Modernization</strong>, or <strong>Strategic Expansion & Innovation</strong>.
@@ -91,21 +132,49 @@
       </div>
     </div>
 
-    <div style="display: flex; align-items: center; gap: 16px; margin: 16px 0 32px 2cm; max-width: 1080px;">
-      <div class="card" style="flex: 1; padding: 0; overflow: hidden; background: #e8eaf6;">
-        <img src="XEnQuad.webp" alt="XEnQuad quadrant" style="display: block; width: 100%; height: 340px; object-fit: contain; object-position: center;" />
+    <div class="cta-group" style="margin-top: 18px">
+      <a class="btn btn-primary" href="contact.html">Book a XEnQuad™ Workshop</a>
+      <a class="btn btn-link" href="sample-assessment.html">See a Sample Assessment →</a>
+    </div>
+
+    <!-- Start Where You Are: tied directly to XEnQuad -->
+    <h3 style="margin-top: 30px">Start where you are (role-based paths)</h3>
+    <p class="muted" style="max-width: 860px; margin-top: 10px">
+      XEnQuad aligns each role on the same posture: executives decide the capital move, operations translates posture into runbooks and
+      self-healing workflows, and technology raises maturity with observability, governance, and auditability built in.
+    </p>
+
+    <div class="cards" style="margin-top: 12px">
+      <div class="card">
+        <h3>CEO / COO: choose the move</h3>
+        <p>
+          Use XEnQuad to align leadership on your posture—stabilize, realign, automate, or expand—so AI investment becomes predictable,
+          measurable, and board‑discussable.
+        </p>
+        <p style="margin-top: 12px;"><a class="btn btn-link" href="executives.html">Read the executive brief →</a></p>
       </div>
-      <div style="flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 56px;" aria-hidden="true">
-        <svg xmlns="http://www.w3.org/2000/svg" width="56" height="28" viewBox="0 0 56 28" fill="none">
-          <line x1="2" y1="14" x2="42" y2="14" stroke="var(--muted)" stroke-width="5" stroke-linecap="round"/>
-          <polyline points="36,4 52,14 36,24" stroke="var(--muted)" stroke-width="5" stroke-linecap="round" stroke-linejoin="round" fill="none"/>
-        </svg>
+
+      <div class="card">
+        <h3>Operations: run the roadmap</h3>
+        <p>
+          Translate quadrant posture into operational milestones across the five zones: early signals, automated actions, and self‑correcting
+          performance—without adding headcount.
+        </p>
+        <p style="margin-top: 12px;"><a class="btn btn-link" href="operations.html">See the ops playbook →</a></p>
       </div>
-      <div class="card" style="flex: 1; padding: 0; overflow: hidden; background: #e8eaf6;">
-        <img src="XEnQuad1.webp" alt="XEnQuad quadrant 1" style="display: block; width: 100%; height: 340px; object-fit: contain; object-position: center;" />
+
+      <div class="card">
+        <h3>CIO / CTO: raise maturity safely</h3>
+        <p>
+          Improve MML maturity where it matters most—instrumentation, integration, governance, and controls—so autonomy scales only when stability
+          and compliance are proven.
+        </p>
+        <p style="margin-top: 12px;"><a class="btn btn-link" href="technology.html">View the technology brief →</a></p>
       </div>
     </div>
+  </div>
 </section>
+``
 
   <section class="section alt">
     <div class="container">
