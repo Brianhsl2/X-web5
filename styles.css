@@ -162,7 +162,7 @@ img[src*="XEnQuad"] {
 }
 
 [data-theme="dark"] img[src*="XEnQuad"] {
-  filter: brightness(1.2) contrast(1.3) saturate(1.1);
+  filter: none;
 }
 
 [data-theme="light"] img[src*="XEnQuad"] {
@@ -171,7 +171,7 @@ img[src*="XEnQuad"] {
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) img[src*="XEnQuad"] {
-    filter: brightness(1.2) contrast(1.3) saturate(1.1);
+    filter: none;
   }
 }
 
@@ -183,8 +183,8 @@ img[src*="XEnQuad"] {
 }
 
 [data-theme="dark"] .image-container {
-  background: color-mix(in oklab, var(--surface) 85%, var(--bg) 15%);
-  border-color: color-mix(in oklab, #93C5FD 45%, var(--border) 55%);
+  background: #ffffff;
+  border-color: #dbe7ff;
 }
 
 [data-theme="light"] .image-container {
@@ -194,8 +194,8 @@ img[src*="XEnQuad"] {
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) .image-container {
-    background: color-mix(in oklab, var(--surface) 85%, var(--bg) 15%);
-    border-color: color-mix(in oklab, #93C5FD 45%, var(--border) 55%);
+    background: #ffffff;
+    border-color: #dbe7ff;
   }
 }
 
