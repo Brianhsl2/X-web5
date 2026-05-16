@@ -184,7 +184,7 @@ img[src*="XEnQuad"] {
 
 [data-theme="dark"] .image-container {
   background: color-mix(in oklab, var(--surface) 85%, var(--bg) 15%);
-  border-color: color-mix(in oklab, #93C5FD 25%, var(--border) 75%);
+  border-color: color-mix(in oklab, #93C5FD 45%, var(--border) 55%);
 }
 
 [data-theme="light"] .image-container {
@@ -195,7 +195,7 @@ img[src*="XEnQuad"] {
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) .image-container {
     background: color-mix(in oklab, var(--surface) 85%, var(--bg) 15%);
-    border-color: color-mix(in oklab, #93C5FD 25%, var(--border) 75%);
+    border-color: color-mix(in oklab, #93C5FD 45%, var(--border) 55%);
   }
 }
 
@@ -208,13 +208,13 @@ img[src*="XEnQuad"] {
 
 [data-theme="dark"] .image-container figcaption,
 [data-theme="dark"] .image-container .muted {
-  color: color-mix(in oklab, var(--muted) 95%, #93C5FD 5%);
+  color: color-mix(in oklab, #E0E7FF 70%, var(--muted) 30%);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) .image-container figcaption,
   :root:not([data-theme]) .image-container .muted {
-    color: color-mix(in oklab, var(--muted) 95%, #93C5FD 5%);
+    color: color-mix(in oklab, #E0E7FF 70%, var(--muted) 30%);
   }
 }
 
@@ -226,13 +226,13 @@ svg polyline[stroke="var(--muted)"] {
 
 [data-theme="dark"] svg line[stroke="var(--muted)"],
 [data-theme="dark"] svg polyline[stroke="var(--muted)"] {
-  stroke: color-mix(in oklab, var(--muted) 90%, #93C5FD 10%);
+  stroke: color-mix(in oklab, #93C5FD 60%, var(--muted) 40%);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) svg line[stroke="var(--muted)"],
   :root:not([data-theme]) svg polyline[stroke="var(--muted)"] {
-    stroke: color-mix(in oklab, var(--muted) 90%, #93C5FD 10%);
+    stroke: color-mix(in oklab, #93C5FD 60%, var(--muted) 40%);
   }
 }
 
