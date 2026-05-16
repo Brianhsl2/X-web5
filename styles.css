@@ -161,13 +161,6 @@ img[src*="XEnQuad"] {
   border-radius: 8px;
 }
 
-/* XEnQuad specific enhancements */
-img[src*="XEnQuad"] {
-  max-width: 100%;
-  height: auto;
-  border-radius: 8px;
-}
-
 [data-theme="dark"] img[src*="XEnQuad"] {
   filter: brightness(1.08) contrast(1.15) saturate(1.05);
 }
@@ -185,20 +178,61 @@ img[src*="XEnQuad"] {
 /* Image container styling for theme-aware backgrounds */
 .image-container {
   background: var(--surface);
-  transition: background-color .25s ease;
+  border: 1px solid var(--card-border);
+  transition: background-color .25s ease, border-color .25s ease;
 }
 
 [data-theme="dark"] .image-container {
   background: color-mix(in oklab, var(--surface) 85%, var(--bg) 15%);
+  border-color: color-mix(in oklab, #93C5FD 25%, var(--border) 75%);
 }
 
 [data-theme="light"] .image-container {
   background: color-mix(in oklab, var(--surface) 90%, #fff 10%);
+  border-color: var(--border);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) .image-container {
     background: color-mix(in oklab, var(--surface) 85%, var(--bg) 15%);
+    border-color: color-mix(in oklab, #93C5FD 25%, var(--border) 75%);
+  }
+}
+
+/* Enhance text and captions in dark mode */
+.image-container figcaption,
+.image-container .muted {
+  color: var(--muted);
+  transition: color .25s ease;
+}
+
+[data-theme="dark"] .image-container figcaption,
+[data-theme="dark"] .image-container .muted {
+  color: color-mix(in oklab, var(--muted) 95%, #93C5FD 5%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .image-container figcaption,
+  :root:not([data-theme]) .image-container .muted {
+    color: color-mix(in oklab, var(--muted) 95%, #93C5FD 5%);
+  }
+}
+
+/* SVG enhancements for dark mode visibility */
+svg line[stroke="var(--muted)"],
+svg polyline[stroke="var(--muted)"] {
+  transition: stroke .25s ease;
+}
+
+[data-theme="dark"] svg line[stroke="var(--muted)"],
+[data-theme="dark"] svg polyline[stroke="var(--muted)"] {
+  stroke: color-mix(in oklab, var(--muted) 90%, #93C5FD 10%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) svg line[stroke="var(--muted)"],
+  :root:not([data-theme]) svg polyline[stroke="var(--muted)"] {
+    stroke: color-mix(in oklab, var(--muted) 90%, #93C5FD 10%);
   }
 }
 
