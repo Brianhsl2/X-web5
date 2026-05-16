@@ -208,13 +208,13 @@ img[src*="XEnQuad"] {
 
 [data-theme="dark"] .image-container figcaption,
 [data-theme="dark"] .image-container .muted {
-  color: color-mix(in oklab, #E0E7FF 70%, var(--muted) 30%);
+  color: #F0F4F8;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) .image-container figcaption,
   :root:not([data-theme]) .image-container .muted {
-    color: color-mix(in oklab, #E0E7FF 70%, var(--muted) 30%);
+    color: #F0F4F8;
   }
 }
 
