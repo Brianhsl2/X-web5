@@ -131,6 +131,77 @@ a:focus, button:focus { outline: 3px solid var(--focus); outline-offset: 2px }
 [data-theme="light"]    .logo-wrap { background: #0B1020 }
 [data-theme="dark"]     .logo-wrap { background: transparent }
 .logo-img { height: 28px; width: auto; display: block }
+
+/* ── Image enhancements for light/dark modes ── */
+img {
+  transition: filter .25s ease;
+}
+
+/* Default light mode images */
+[data-theme="light"] img,
+:root:not([data-theme]) img {
+  filter: brightness(1) contrast(1);
+}
+
+/* Dark mode image adjustments */
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) img {
+    filter: brightness(1.05) contrast(1.1);
+  }
+}
+
+[data-theme="dark"] img {
+  filter: brightness(1.05) contrast(1.1);
+}
+
+/* XEnQuad specific enhancements */
+img[src*="XEnQuad"] {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+/* XEnQuad specific enhancements */
+img[src*="XEnQuad"] {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+
+[data-theme="dark"] img[src*="XEnQuad"] {
+  filter: brightness(1.08) contrast(1.15) saturate(1.05);
+}
+
+[data-theme="light"] img[src*="XEnQuad"] {
+  filter: brightness(0.98) contrast(1.02);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) img[src*="XEnQuad"] {
+    filter: brightness(1.08) contrast(1.15) saturate(1.05);
+  }
+}
+
+/* Image container styling for theme-aware backgrounds */
+.image-container {
+  background: var(--surface);
+  transition: background-color .25s ease;
+}
+
+[data-theme="dark"] .image-container {
+  background: color-mix(in oklab, var(--surface) 85%, var(--bg) 15%);
+}
+
+[data-theme="light"] .image-container {
+  background: color-mix(in oklab, var(--surface) 90%, #fff 10%);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme]) .image-container {
+    background: color-mix(in oklab, var(--surface) 85%, var(--bg) 15%);
+  }
+}
+
 nav { display: flex; align-items: center; flex-wrap: nowrap; gap: 0; flex-shrink: 0 }
 nav a { margin-left: 12px; text-decoration: none; font-weight: 600; font-size: 13px; color: var(--text); opacity: .9; white-space: nowrap }
 nav a:hover { color: var(--indigo) }
