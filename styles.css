@@ -207,6 +207,10 @@ img[src*="XEnQuad"] {
   font-size: 14px;
 }
 
+figcaption {
+  font-size: 14px;
+}
+
 [data-theme="dark"] .image-container figcaption,
 [data-theme="dark"] .image-container .muted {
   color: #4B5563;
