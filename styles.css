@@ -183,8 +183,8 @@ img[src*="XEnQuad"] {
 }
 
 [data-theme="dark"] .image-container {
-  background: #ffffff;
-  border-color: #dbe7ff;
+  background: color-mix(in oklab, #f3f4f6 95%, var(--bg) 5%);
+  border-color: color-mix(in oklab, #93C5FD 40%, var(--border) 60%);
 }
 
 [data-theme="light"] .image-container {
@@ -194,8 +194,8 @@ img[src*="XEnQuad"] {
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) .image-container {
-    background: #ffffff;
-    border-color: #dbe7ff;
+    background: color-mix(in oklab, #f3f4f6 95%, var(--bg) 5%);
+    border-color: color-mix(in oklab, #93C5FD 40%, var(--border) 60%);
   }
 }
 
