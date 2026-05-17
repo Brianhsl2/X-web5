@@ -183,18 +183,18 @@ img[src*="XEnQuad"] {
 }
 
 [data-theme="dark"] .image-container {
-  background: color-mix(in oklab, #f3f4f6 95%, var(--bg) 5%);
+  background: #6B7280;
   border-color: color-mix(in oklab, #93C5FD 40%, var(--border) 60%);
 }
 
 [data-theme="light"] .image-container {
-  background: color-mix(in oklab, var(--surface) 90%, #fff 10%);
+  background: #E5E7EB;
   border-color: var(--border);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) .image-container {
-    background: color-mix(in oklab, #f3f4f6 95%, var(--bg) 5%);
+    background: #6B7280;
     border-color: color-mix(in oklab, #93C5FD 40%, var(--border) 60%);
   }
 }
@@ -204,6 +204,7 @@ img[src*="XEnQuad"] {
 .image-container .muted {
   color: var(--muted);
   transition: color .25s ease;
+  font-size: 14px;
 }
 
 [data-theme="dark"] .image-container figcaption,
