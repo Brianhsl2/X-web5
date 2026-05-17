@@ -163,15 +163,18 @@ img[src*="XEnQuad"] {
 
 [data-theme="dark"] img[src*="XEnQuad"] {
   filter: none;
+  -webkit-filter: contrast(1.1) brightness(1.02);
 }
 
 [data-theme="light"] img[src*="XEnQuad"] {
   filter: brightness(0.98) contrast(1.02);
+  -webkit-filter: brightness(0.98) contrast(1.02);
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme]) img[src*="XEnQuad"] {
     filter: none;
+    -webkit-filter: contrast(1.1) brightness(1.02);
   }
 }
 
@@ -204,11 +207,19 @@ img[src*="XEnQuad"] {
 .image-container .muted {
   color: var(--muted);
   transition: color .25s ease;
-  font-size: 18px;
+  font-size: 24px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 figcaption {
-  font-size: 18px;
+  font-size: 24px;
+  font-weight: 700;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.15), 0 1px 2px rgba(0, 0, 0, 0.1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
 [data-theme="dark"] .image-container figcaption,
