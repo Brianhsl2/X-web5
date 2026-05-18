@@ -8,6 +8,11 @@
     content="Turn AI from pilots into a governed operating capability — prioritize the right use cases, build audit-ready controls, and enable adoption." />
   <link rel="stylesheet" href="styles.css" />
   <style>
+    .xq-diagram-row {
+      margin: 16px auto 32px !important;
+      max-width: 1200px !important;
+    }
+
     @media (max-width: 900px) {
       .xq-diagram-row {
         margin: 16px 0 24px 0 !important;
@@ -15,32 +20,50 @@
       }
 
       .xq-diagram-row .image-container {
-        padding: 8px 8px 10px !important;
+        padding: 8px 10px 10px !important;
+      }
+
+      .xq-diagram-canvas {
+        padding-left: 14px;
       }
 
       .xq-diagram-caption {
-        font-size: 12px !important;
-        line-height: 1.25;
+        font-size: 10px !important;
+        line-height: 1.2;
       }
 
       .xq-side-caption {
-        left: 6px !important;
-        font-size: 10px !important;
+        left: 4px !important;
+        font-size: 8px !important;
         line-height: 1.05 !important;
       }
 
       .xq-side-caption .xq-side-caption-sub {
-        font-size: 8px !important;
+        font-size: 7px !important;
       }
 
       .xq-bottom-labels {
-        height: 16px !important;
+        height: 14px !important;
         margin-top: 8px !important;
+        padding: 0 2px;
       }
 
       .xq-bottom-caption {
-        font-size: 10px !important;
+        font-size: 8px !important;
         line-height: 1.1 !important;
+      }
+
+      .xq-bottom-caption.xq-bottom-left {
+        left: 0 !important;
+        transform: none !important;
+        text-align: left !important;
+      }
+
+      .xq-bottom-caption.xq-bottom-right {
+        left: auto !important;
+        right: 0 !important;
+        transform: none !important;
+        text-align: right !important;
       }
     }
   </style>
@@ -131,14 +154,14 @@
     <div class="xq-diagram-row" style="display: flex; align-items: center; gap: 16px; margin: 16px 0 32px 2cm; max-width: 1080px;">
       <div class="card image-container" style="flex: 1; padding: 10px 12px 12px; overflow: hidden; display: flex; flex-direction: column; gap: 4px;">
         <figcaption class="xq-diagram-caption" style="text-align: center; color: #111827;">XEnQuad Assessment Template</figcaption>
-        <div style="display: flex; gap: 4px; height: 270px; position: relative;">
+        <div class="xq-diagram-canvas" style="display: flex; gap: 4px; height: 270px; position: relative;">
           <span class="xq-side-caption" style="position: absolute; top: 25%; left: 10px; transform: translateY(-50%) rotate(180deg); writing-mode: vertical-rl; font-size: 12px; font-weight: 600; color: #111827; z-index: 1; text-align: center; line-height: 1.1;">Low Ind Risk <span class="xq-side-caption-sub" style="font-size: 9px;">(XEnScore)</span></span>
           <span class="xq-side-caption" style="position: absolute; top: 75%; left: 10px; transform: translateY(-50%) rotate(180deg); writing-mode: vertical-rl; font-size: 12px; font-weight: 600; color: #111827; z-index: 1; text-align: center; line-height: 1.1; white-space: nowrap;">High Ind Risk <span class="xq-side-caption-sub" style="font-size: 9px;">(XEnScore)</span></span>
           <img src="XEnQuad.3.png" alt="XEnQuad quadrant" style="display: block; flex: 1; width: 0; height: 100%; object-fit: contain; object-position: center;" />
         </div>
         <div class="xq-bottom-labels" style="position: relative; height: 18px; margin-top: 10px;">
-          <span class="xq-bottom-caption" style="position: absolute; left: 30%; transform: translateX(-50%); text-align: center; font-size: 12px; font-weight: 600; color: #111827; white-space: nowrap;">Low Agent Maturity (MML)</span>
-          <span class="xq-bottom-caption" style="position: absolute; left: 70%; transform: translateX(-50%); text-align: center; font-size: 12px; font-weight: 600; color: #111827; white-space: nowrap;">High Agent Maturity (MML)</span>
+          <span class="xq-bottom-caption xq-bottom-left" style="position: absolute; left: 30%; transform: translateX(-50%); text-align: center; font-size: 12px; font-weight: 600; color: #111827; white-space: nowrap;">Low Agent Maturity (MML)</span>
+          <span class="xq-bottom-caption xq-bottom-right" style="position: absolute; left: 70%; transform: translateX(-50%); text-align: center; font-size: 12px; font-weight: 600; color: #111827; white-space: nowrap;">High Agent Maturity (MML)</span>
         </div>
       </div>
       <div style="flex: 0 0 auto; display: flex; align-items: center; justify-content: center; width: 56px;" aria-hidden="true">
@@ -149,14 +172,14 @@
       </div>
       <div class="card image-container" style="flex: 1; padding: 10px 12px 12px; overflow: hidden; display: flex; flex-direction: column; gap: 4px;">
         <figcaption class="xq-diagram-caption" style="text-align: center; color: #111827;">XEnQuad Assessment Outcome</figcaption>
-        <div style="display: flex; gap: 4px; height: 270px; position: relative;">
+        <div class="xq-diagram-canvas" style="display: flex; gap: 4px; height: 270px; position: relative;">
           <span class="xq-side-caption" style="position: absolute; top: 25%; left: 10px; transform: translateY(-50%) rotate(180deg); writing-mode: vertical-rl; font-size: 12px; font-weight: 600; color: #111827; z-index: 1; text-align: center; line-height: 1.1;">Low Ind Risk <span class="xq-side-caption-sub" style="font-size: 9px;">(XEnScore)</span></span>
           <span class="xq-side-caption" style="position: absolute; top: 75%; left: 10px; transform: translateY(-50%) rotate(180deg); writing-mode: vertical-rl; font-size: 12px; font-weight: 600; color: #111827; z-index: 1; text-align: center; line-height: 1.1; white-space: nowrap;">High Ind Risk <span class="xq-side-caption-sub" style="font-size: 9px;">(XEnScore)</span></span>
           <img src="XEnQuad.sim.4.png" alt="XEnQuad Simulation" style="display: block; flex: 1; width: 0; height: 100%; object-fit: contain; object-position: center;" />
         </div>
         <div class="xq-bottom-labels" style="position: relative; height: 18px; margin-top: 10px;">
-          <span class="xq-bottom-caption" style="position: absolute; left: 30%; transform: translateX(-50%); text-align: center; font-size: 12px; font-weight: 600; color: #111827; white-space: nowrap;">Low Agent Maturity (MML)</span>
-          <span class="xq-bottom-caption" style="position: absolute; left: 70%; transform: translateX(-50%); text-align: center; font-size: 12px; font-weight: 600; color: #111827; white-space: nowrap;">High Agent Maturity (MML)</span>
+          <span class="xq-bottom-caption xq-bottom-left" style="position: absolute; left: 30%; transform: translateX(-50%); text-align: center; font-size: 12px; font-weight: 600; color: #111827; white-space: nowrap;">Low Agent Maturity (MML)</span>
+          <span class="xq-bottom-caption xq-bottom-right" style="position: absolute; left: 70%; transform: translateX(-50%); text-align: center; font-size: 12px; font-weight: 600; color: #111827; white-space: nowrap;">High Agent Maturity (MML)</span>
         </div>
       </div>
     </div>
