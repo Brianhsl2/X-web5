@@ -101,6 +101,25 @@
     .section {
       padding: 32px 0;
     }
+
+    .xenquad-image-wrap {
+      margin-top: 14px;
+      display: inline-block;
+      max-width: min(100%, 980px);
+      padding: 10px;
+      border-radius: 12px;
+      border: 1px solid var(--card-border);
+      background: #ffffff;
+    }
+
+    .xenquad-image-wrap img {
+      display: block;
+      width: 100%;
+      height: auto;
+      border-radius: 8px;
+      filter: none !important;
+      -webkit-filter: none !important;
+    }
   </style>
   <script>!function(){var t=localStorage.getItem("xenablers-theme");if(t==="dark"||t==="light")document.documentElement.setAttribute("data-theme",t)}();</script>
 </head>
@@ -115,9 +134,9 @@
         Governance and auditability are designed in from day one, not bolted on later.
         <strong>For a detailed workflow, go to the Approach tab in the main browser tab.</strong>
       </p>
-      <p style="margin-top: 14px;">
-        <img src="XEnQuad.sim.5.png" alt="XEnQuad simulation diagram" style="max-width: 100%; height: auto; border-radius: 10px;" />
-      </p>
+      <div class="xenquad-image-wrap" aria-label="XEnQuad simulation image container">
+        <img src="XEnQuad.sim.5.png" alt="XEnQuad simulation diagram" />
+      </div>
       <p>
         This page defines the components and metrics of the XEnablers.ai approach to assess an organization's operating model for AI governance and AI execution, combining XEnScore™, XEnQuad™, and the XEnablers MML framework, to assess risk, measure AI agent maturity, and move from concept to controlled, scalable autonomous operations.
       </p>
