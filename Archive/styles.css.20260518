@@ -448,18 +448,3 @@ html, body,
 .metrics.ttaa-grid {
   grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
 }
-
-/* ============================================================
-   XEnQuad additions (optional)
-   Keep small: this file extends the shared styles.css without changing tokens.
-   ============================================================ */
-
-/* Quadrant cards: add a subtle, theme-safe accent */
-.quad-card { border-top: 4px solid var(--card-border); }
-.quad-card.q1 { border-top-color: #EF4444; }
-.quad-card.q2 { border-top-color: #3B82F6; }
-.quad-card.q3 { border-top-color: #F59E0B; }
-.quad-card.q4 { border-top-color: #22C55E; }
-
-/* Improve svg text rendering */
-.diagram-wrap svg text { -webkit-font-smoothing: antialiased; -moz-osx-font-smoothing: grayscale; }
